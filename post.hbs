@@ -1,0 +1,128 @@
+{{!< default}}
+         
+<div id="container" class="container">   
+        
+    {{#post}}
+
+    {{> header}}
+
+    <main role="main">
+
+        <article class="{{post_class}}">
+            <header class="post-header_pellere {{#if image}}img-fullpage_pellere" style="background-image: url({{image}}){{/if}}">
+                <div class="vertical_pellere">
+                    <section class="inner_pellere">
+                        <h1>{{title}}</h1>
+                        <ul>
+                            {{#if author.image}}<li class="post-authorimg_pellere"><img class="author-thumb_pellere" src="{{author.image}}" alt="Author image" nopin="nopin" /></li>{{/if}}
+                            <li class="author-name_pellere"><a href="{{@blog.url}}/author/{{author.slug}}">{{author.name}}</a></li>
+                            <li><time>{{date format='DD MMM YYYY'}}</time></li>
+                        </ul>
+                    </section>
+                </div>
+            </header>
+             
+            <section class="post-content_pellere">
+                <div>
+                    {{content}}
+                </div>
+            </section>
+            
+            <footer class="post-footer_pellere wrapper_pellere">
+                {{#if tags}}
+                    <section class="post-tags_pellere">
+                        <h5 class="hidden_pellere">Tags</h5>
+                        {{tags separator=""}}
+                    </section>
+                {{/if}}
+                
+                <div class="author_pellere">
+                    {{#author}}
+                        {{#if image}}
+                            <figure class="author-img_pellere">
+                                <a href="{{url}}" style="background-image: url({{image}})"><span class="hidden_pellere">{{name}}'s Picture</span></a>
+                            </figure>
+                        {{else}} 
+                            <figure class="author-withoutimg_pellere">
+                                <a href="{{url}}" style="background-image: url({{asset "img/author-icon.jpg"}})"><span class="hidden_pellere">{{name}}'s Picture</span></a>
+                            </figure>
+                        {{/if}}
+                        <section class="about-author_pellere">
+                            <h4><a href="{{url}}">{{name}}</a></h4>
+                            {{#if bio}}
+                                <p>{{bio}}</p>
+                            {{else}}
+                                <p>Read <a href="{{url}}">more articles</a> by this author.</p>
+                            {{/if}}
+                        </section>
+                        {{/author}} 
+                        <div class="share_pellere">
+                            <div>
+                            <a class="twitter-share" target="_blank" href="http://twitter.com/share?text={{title}}&url={{url absolute="true"}}"><i class="fa fa-twitter"></i><span class="hidden_pellere">Twitter</span></a> 
+                            <a class="facebook-share" target="_blank" href="http://www.facebook.com/sharer.php?u={{url absolute="true"}}"><i class="fa fa-facebook"></i><span class="hidden_pellere">Facebook</span></a>
+                            <a class="google-share" target="_blank" href="https://plus.google.com/share?url={{url absolute="true"}}"><i class="fa fa-google-plus"></i> <span class="hidden_pellere">Google+</span></a>
+                            <h4>Share this post</h4>
+                            </div>
+                        </div>
+                </div>
+                
+            </footer>
+        </article>
+        
+        <div class="disqusbox_pellere wrapper_pellere">
+            <div id="disqus_thread"><form onsubmit="my.loadDisqus();return false;" class=formBlock><input class="cmd_pellere" type=submit value="Load Comments"></form>
+            </div>
+
+            {{! Disqus comments }}
+            <script type="text/javascript">
+                {{> custom/disqus this}}
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                var disqus_url = "{{url absolute="true"}}";
+                var disqus_identifier = '{{post.id}}';
+                var my = my || {};
+                my.loadDisqus = function() {
+                    var dsq = document.createElement('script');
+                    dsq.type = 'text/javascript';
+                    dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                };
+            </script>
+
+            <noscript>Please enable javascript to <a rel="nofollow" href="http://disqus.com/?ref_noscript">discus this page, powered by Disqus.</a></noscript>
+            
+            <style scoped=scoped>
+                @media print{
+                    .disqusbox{display:none}
+                }
+            </style>
+        </div>
+    </main>
+
+    <aside class="read-next_pellere wrapper_pellere">
+        {{#next_post}}
+            <section class="next-story_pellere">
+                <a href="{{url}}">
+                    <h2>{{title}}</h2>
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <p>By <a href="{{@blog.url}}/author/{{author.slug}}">{{author.name}}</a></p>
+            </section>
+        {{/next_post}}
+        {{#prev_post}}
+            <section class="prev-story_pellere">
+                <a href="{{url}}"> 
+                    <h2>{{title}}</h2>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                <p>By <a href="{{@blog.url}}/author/{{author.slug}}">{{author.name}}</a></p>
+            </section> 
+        {{/prev_post}}
+    </aside>
+
+    {{/post}} 
+
+    {{> footer}} 
+       
+</div>

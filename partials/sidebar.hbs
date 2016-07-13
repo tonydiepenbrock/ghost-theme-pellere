@@ -1,0 +1,94 @@
+<aside class="right-column index sticky_item">
+    <div class="inner-aside">  
+        
+        {{#if @blog.description}}
+            <section class="banner">
+                <h2>{{@blog.description}}</h2>
+            </section>
+        {{/if}}
+        
+        
+        {{#get "tags" limit="15" include="count.posts" order="count.posts desc"}}
+            <section class="cloud-tags">
+                <h3>Popular tags&#58;</h3>
+                <hr>
+                <ul>
+                    {{#foreach tags}}
+                        <li><a href="/tag/{{slug}}">{{name}}<span>({{count.posts}})</span></a></li>
+                    {{/foreach}}
+                </ul>
+            </section>
+        {{/get}}
+        
+        
+        {{#get "posts" filter="featured:true" limit="5" as |featured|}}
+            <section class="featured-posts">
+                <h3>Featured articles&#58;</h3>
+                <hr>
+                <div id="featured-list">
+                    {{#foreach featured}}
+                    <article class="item">
+                        <a href="{{url}}" class="inner-featured {{#if image}}img-featured_pellere" style="background-image: url({{image}}){{/if}}">
+                            <div>
+                                <h4>{{title}}</h4>
+                                <span class="read-more_pellere">Read More</span>
+                            </div>
+                            <span class="star_pellere"><i class="fa fa-star"></i></span>
+                        </a>
+                    </article>  
+                    {{/foreach}}
+                </div>
+            </section>
+        {{/get}}
+        
+        
+        <section class="authors">
+            <h3>Authors&#58;</h3>
+            <hr>
+            {{#get "users" limit="all" include="name, bio, img, count.posts" order="count.posts desc"}}
+            <ul>
+                {{#foreach users}}
+                    <li>
+                        {{#if image}}
+                        <figure><a href="{{@blog.url}}/author/{{slug}}"><img src={{image}} alt="{{name}}'s Picture" nopin="nopin" /></a></figure>
+                        {{else}}
+                        <figure><a href="{{@blog.url}}/author/{{slug}}"><img src="{{asset "img/author-icon.jpg"}}" alt="{{name}}'s Picture" nopin="nopin"</a></figure>
+                        {{/if}}
+                        <div>
+                            <h4><a href="{{@blog.url}}/author/{{slug}}">{{name}}</a></h4>
+                            <span>{{plural count.posts empty='No articles' singular='(%) article' plural='(%) articles'}}</span>
+                            {{#if bio}}
+                                <p class="description_pellere">{{bio}}</p>
+                            {{else}}
+                                <p class="description_pellere">Read all articles by this author</p>
+                            {{/if}}
+                            <hr class="short {{#if bio}}long{{/if}}">
+                        </div>
+                    </li>
+                {{/foreach}}  
+            </ul>
+            {{/get}}
+        </section>
+        
+        
+        {{#get "posts" include="author, time" limit="5" as |recents|}}
+            <section class="recent-posts">
+                <h3>Recent Blog Posts&#58;</h3>
+                <hr>
+                <ol>
+                    {{#foreach recents}}
+                        <li>
+                            <div>
+                                <h4><a href="{{url}}">{{title}}</a></h4>
+                                <h5>{{author.name}}</h5>
+                                <time>{{date published_at timeago="true"}}</time>
+                            </div>
+                        </li>
+                    {{/foreach}}
+                </ol>
+            </section>
+        {{/get}}
+        
+         
+    </div>
+</aside>

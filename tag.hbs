@@ -1,0 +1,32 @@
+{{!< default}}
+
+{{> header}}
+
+<div id="container">
+    <div class="grey"></div>
+
+    <div class="main-wrapper">
+        <div class="inner-main-wrapper">
+            
+            <aside class="right-column">
+                <div class="inner-aside"> 
+                    <section class="banner">
+                        <h1>Articles tagged:<br>"{{tag.name}}"</h1>
+                        {{#if tag.description}}<p class="description_pellere">{{tag.description}}</p>{{/if}}
+                        <a class="rss" href="{{url absolute="true"}}rss"><i class="fa fa-rss"></i>Subscribe</a>
+                        <span class="stats">{{plural pagination.total empty='No articles' singular='% Article' plural='% Articles'}}</span>
+                    </section>
+                </div>
+            </aside>
+
+            <div class="left-column">
+                <main role="main">
+                    {{> loop}} 
+                </main>
+            </div>
+
+        </div> 
+    </div> 
+</div>
+
+{{> footer}}

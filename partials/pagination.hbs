@@ -1,0 +1,7 @@
+<nav class="pagination_pellere" role="navigation">
+    <div>
+        {{#if prev}}<a class="newer-posts_pellere" href="{{page_url prev}}"><i class="fa fa-angle-left"></i><span>Newer Posts</span></a>{{/if}}
+        {{#if next}}<a class="older-posts_pellere" href="{{page_url next}}"><span>Older Posts</span><i class="fa fa-angle-right"></i></a>{{/if}}
+    </div>
+    <span class="page-number_pellere">Page {{page}} of {{pages}}</span>
+</nav>

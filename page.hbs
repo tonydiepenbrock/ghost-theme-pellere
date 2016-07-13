@@ -1,0 +1,22 @@
+{{!< default}}
+
+<div id="page-container">
+
+    {{> header}}
+
+    <main role="main"> 
+        {{#post}} 
+        <div class="page-wrapper_pellere">
+            <section class="banner-page_pellere">
+                <h1>{{title}}</h1>
+            </section>  
+
+            <section class="post-content_pellere">
+                {{content}} 
+            </section>  
+        </div>
+        {{/post}}
+    </main>
+
+    {{> footer}}         
+</div>

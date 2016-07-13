@@ -1,0 +1,54 @@
+ {{#foreach posts}}
+            
+    {{#if featured}}
+        
+        <article class="{{post_class}}">
+            <a href="{{url}}" class="inner-featured {{#if image}}featured-with-image" style="background-image: url({{image}}){{/if}}" rel="bookmark">
+               
+                <div class="inner_pellere">
+                    <header class="article-header_pellere">
+                        <h2 class="post-title_pellere">{{title}}</h2>
+                    </header>
+                    <section class="articlecontent_pellere">
+                        <p>{{excerpt words="19"}}&hellip;</p>
+                    </section>
+                    <footer class="post-meta_pellere">
+                        <span class="read-more_pellere">Read More</span>
+                    </footer>
+                </div>
+                <div class="star_pellere"><i class="fa fa-star"></i></div>
+            </a>
+        </article>
+        <hr class="featured-hr_pellere" />
+        
+    {{else}}
+
+        <article class="{{post_class}}">
+            <header class="article-header_pellere">
+                <h2><a href="{{{url}}}" rel="bookmark">{{title}}</a></h2>
+            </header>
+            <section class="articlecontent_pellere">
+                <a href="{{{url}}}">
+                    <p>{{excerpt words="19"}}&hellip;</p>
+                    {{#if image}}
+                        <a class="wrapper-image" href="{{url}}"><img class="post-image" src="{{image}}" alt="{{title}}" /></a>
+                    {{/if}}
+                </a>
+            </section>
+            <footer class="post-meta_pellere">
+                {{#if author.image}}<a href="{{@blog.url}}/author/{{author.slug}}"><img class="author-thumb_pellere" src="{{author.image}}" alt="Author image" nopin="nopin" /></a>{{/if}}
+                <ul>
+                    <li class="author-name_pellere"><a href="{{@blog.url}}/author/{{author.slug}}">{{author.name}}</a></li>
+                    <li>
+                        <time>{{date format='DD MMM YYYY'}}</time>
+                        {{#if tags}}<span>{{tags separator=", "}}</span>{{/if}}
+                    </li>
+                </ul>
+            </footer>
+        </article>
+                        
+    {{/if}}
+    
+{{/foreach}}  
+
+{{#if pagination}}{{{pagination}}}{{/if}}

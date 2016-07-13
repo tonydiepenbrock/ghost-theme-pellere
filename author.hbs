@@ -1,0 +1,44 @@
+{{!< default}}
+
+{{> header}}
+
+<div id="container">
+    <div class="grey"></div>
+
+    <div class="main-wrapper">
+        <div class="inner-main-wrapper"> 
+
+            <aside class="right-column">
+                <div class="inner-aside">  
+                    {{#author}}
+                    <section class="banner">
+                        {{#if image}}
+                        <figure class="author-image_pellere">
+                            <div style="background-image: url({{image}})"><span class="hidden_pellere">{{name}}'s Picture</span></div>
+                        </figure>
+                        {{/if}}
+                        <h1>{{name}}</h1>
+                        <ul>
+                            {{#if location}}<li><i class="fa fa-map-marker"></i><span>{{location}}</span></li>{{/if}}
+                            {{#if website}}<li><i class="fa fa-link"></i><a href="{{author.website}}">{{website}}</a></li>{{/if}}
+                        </ul>
+                        {{#if bio}}<p class="description_pellere">{{bio}}</p>{{/if}}
+                        <a class="rss" href="{{url}}rss"><i class="fa fa-rss"></i>Subscribe</a>
+                        <span class="stats">{{plural ../pagination.total empty='No articles' singular='% Article' plural='% Articles'}}</span>
+                    </section>
+                    {{/author}}
+
+                </div>
+            </aside>
+
+            <div class="left-column">
+                <main role="main"> 
+                    {{> loop}}
+                </main>
+            </div> 
+
+        </div>
+    </div> 
+</div>
+
+{{> footer}}

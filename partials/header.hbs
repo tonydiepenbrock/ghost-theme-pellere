@@ -1,0 +1,19 @@
+<header id="header_pellere" class="default">
+    <div class="logo-title_pellere">
+        {{#if @blog.logo}}
+            <a class="logo_pellere" href="{{@blog.url}}">
+                <img src="{{@blog.logo}}" alt="{{@blog.title}}" />
+            </a>
+            {{else}}
+            <a class="button_pellere mobile-button_pellere" href="{{@blog.url}}"><i class="fa fa-home"><span class="hidden_pellere">LOGO</span></i></a>
+        {{/if}}
+        <h1><a href="{{@blog.url}}">{{{@blog.title}}}</a></h1>
+    </div>
+    <div class="menu_pellere">
+        <a class="button_pellere rss_pellere" href="{{@blog.url}}/rss/"><i class="fa fa-rss"><span class="hidden_pellere">RSS</span></i></a>
+        {{#if @blog.navigation}}
+            <a id="trigger-overlay" class="button_pellere" href="#"><i class="fa fa-bars"><span class="hidden_pellere">MENU</span></i></a>
+            {{navigation}}
+        {{/if}}
+    </div>
+</header>
